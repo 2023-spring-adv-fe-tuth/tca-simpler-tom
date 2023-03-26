@@ -1,12 +1,14 @@
-import { Button } from "antd";
+import { Button, Space, Card } from "antd";
 import { useNavigate } from "react-router-dom";
 
-export const Home = () => {
+export const Home = ({gameResults}) => {
 
     const nav = useNavigate();
 
     return (
-        <>
+        <Space
+            direction="vertical"
+        >
             <h1>
                 Home
             </h1>
@@ -16,7 +18,11 @@ export const Home = () => {
                 onClick={() => nav("/play")}
             >
                 Play
-            </Button>        
-        </>
+            </Button>
+            <br />        
+            <Card>
+                Total Games: { gameResults.length }
+            </Card>
+        </Space>
     );
 };

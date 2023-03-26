@@ -1,11 +1,12 @@
 import { Button, Space } from "antd";
 import { useNavigate } from "react-router-dom";
 
-export const Play = () => {
+export const Play = ({addNewGameResult}) => {
 
     const nav = useNavigate();
 
     const gameOver = (won) => {
+        addNewGameResult(won);
         nav(-1);
     };
 
@@ -14,7 +15,9 @@ export const Play = () => {
             <h1>
                 Play
             </h1>
-            <Space>
+            <Space
+                direction="vertical"
+            >
                 <Button 
                     type="primary" 
                     block
