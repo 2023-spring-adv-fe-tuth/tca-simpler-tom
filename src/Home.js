@@ -5,6 +5,10 @@ export const Home = ({gameResults}) => {
 
     const nav = useNavigate();
 
+    const winningPercentage = gameResults.length > 0
+        ? (gameResults.filter(x => x).length / gameResults.length * 100).toFixed(2)
+        : "n/a"
+
     return (
         <Space
             direction="vertical"
@@ -21,7 +25,12 @@ export const Home = ({gameResults}) => {
             </Button>
             <br />        
             <Card>
-                Total Games: { gameResults.length }
+                <p>
+                    Total Games: { gameResults.length }
+                </p>
+                <p>
+                    Winning Percentage: { winningPercentage }
+                </p>
             </Card>
         </Space>
     );
