@@ -3,12 +3,31 @@ import './App.css';
 import { Home } from './Home';
 import { Play } from './Play';
 import { HashRouter, Route, Routes } from 'react-router-dom';
-import { useState } from 'react';
-import { saveGameToCloud } from './tca-cloud-api';
+import { useEffect, useState } from 'react';
+import { saveGameToCloud, loadGamesFromCloud } from './tca-cloud-api';
 
 function App() {
 
   const [gameResults, setGameResults] = useState([]);
+
+  useEffect(
+    () => {
+      
+      const loadGames = async () => {
+
+        const data = await loadGamesFromCloud(
+          "tsteele@madisoncollege.edu"
+          , "tca-simpler-tom"
+        );
+        console.log(data);
+    
+        setGameResults(data.map(x => x));
+      };
+            
+      loadGames();
+    }
+    , []
+  );
 
   const addNewGameResult = (newGameResult) => {
     setGameResults(
